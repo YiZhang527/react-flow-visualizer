@@ -7,8 +7,8 @@
     </option>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="-1">
+      <file current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SHOW_PREVIEW" is_vertical_split="false">
@@ -18,11 +18,24 @@
           </provider>
         </entry>
       </file>
+      <file current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/src/App.jsx">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file>
+        <entry file="file://$PROJECT_DIR$/components/src/Button.jsx">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTypeUsageLocalSummary">
     <fileType name="Markdown">
-      <summary usageCount="1" lastUsed="1776544909163" />
+      <summary usageCount="4" lastUsed="1776548334215" />
+    </fileType>
+    <fileType name="textmate">
+      <summary usageCount="6" lastUsed="1776548334462" />
     </fileType>
   </component>
   <component name="IgnoredFileRootStore">
@@ -34,7 +47,10 @@
   </component>
   <component name="LanguageUsageStatistics">
     <language id="Markdown">
-      <summary usageCount="1" lastUsage="1776544909163" />
+      <summary usageCount="4" lastUsage="1776548334216" />
+    </language>
+    <language id="textmate">
+      <summary usageCount="6" lastUsage="1776548334462" />
     </language>
   </component>
   <component name="ProjectView">
@@ -48,6 +64,17 @@
               <item name="10-react-components" type="b2602c69:ProjectViewProjectNode" />
               <item name="dir{file:///Users/zhangyi/Yi/Study/Northeastern/class/student-vtlinfo6150--YiZhang527/work/10-react-components}" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="10-react-components" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///Users/zhangyi/Yi/Study/Northeastern/class/student-vtlinfo6150--YiZhang527/work/10-react-components}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///Users/zhangyi/Yi/Study/Northeastern/class/student-vtlinfo6150--YiZhang527/work/10-react-components/components}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="10-react-components" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///Users/zhangyi/Yi/Study/Northeastern/class/student-vtlinfo6150--YiZhang527/work/10-react-components}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///Users/zhangyi/Yi/Study/Northeastern/class/student-vtlinfo6150--YiZhang527/work/10-react-components/components}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///Users/zhangyi/Yi/Study/Northeastern/class/student-vtlinfo6150--YiZhang527/work/10-react-components/components/src}" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -58,23 +85,25 @@
   <component name="ToolWindowManager">
     <layout>
       <window_info id="Bookmarks" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3203839" />
-      <window_info id="Learn" order="0" />
-      <window_info id="Structure" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3203839" />
+      <window_info id="Learn" order="2" />
+      <window_info id="Structure" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="4" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Problems View" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Services" order="4" />
-      <window_info anchor="right" id="Notifications" order="0" weight="0.25" />
-      <unified_weights left="0.3203839" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Problems View" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Services" order="8" />
+      <window_info active="true" anchor="right" id="React Flow Visualizer" order="0" visible="true" weight="0.33043873" />
+      <window_info anchor="right" id="Notifications" order="1" weight="0.25" />
+      <unified_weights left="0.3203839" right="0.33043873" />
     </layout>
     <recentWindows>
       <value>Project</value>
+      <value>React Flow Visualizer</value>
     </recentWindows>
   </component>
   <component name="editorHistoryManager">
@@ -85,6 +114,12 @@
           <second_editor />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/src/App.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/src/Button.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

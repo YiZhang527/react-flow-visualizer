@@ -1,16 +1,14 @@
 FsRecords.DIRECTORY_CHILDREN
-AUTO_DETECTION_CACHE_ATTRIBUTE
-FsRecords.SYMLINK_TARGET
 template_language
 
 __index_stamps__
+AUTO_DETECTION_CACHE_ATTRIBUTE
+FsRecords.SYMLINK_TARGET
 file.content.hash.forward.multi.index
 IdIndex.index.version
-fileIncludes.index.version
 stubIndexStamp
 Stubs.index.version
 stubIndex.cumulativeBinaryBuilder
-forcedBuildFileFrameworkAttribute
-_forced_ant_attribute_
+fileIncludes.index.version
 TodoIndex.index.version
-FrameworkDetectionIndex.index.version
+language_level_persistence
