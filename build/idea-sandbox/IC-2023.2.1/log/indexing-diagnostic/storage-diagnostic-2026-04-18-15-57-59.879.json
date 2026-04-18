@@ -11,7 +11,7 @@
     "maxCacheSizeInBytes" : 284205056,
     "totalCachedSizeInBytes" : 273719296,
     "pageHits" : 0,
-    "pageFastCacheHits" : 48833,
+    "pageFastCacheHits" : 48889,
     "pageLoadsAboveSizeThreshold" : 0,
     "regularPageLoads" : 747,
     "disposedBuffers" : 490,

@@ -20,7 +20,11 @@
       </file>
       <file>
         <entry file="file://$PROJECT_DIR$/components/src/App.jsx">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file current-in-tab="false">
@@ -55,13 +59,13 @@
   </component>
   <component name="FileTypeUsageLocalSummary">
     <fileType name="CSS">
-      <summary usageCount="2" lastUsed="1776553083526" />
+      <summary usageCount="5" lastUsed="1776555345997" />
     </fileType>
     <fileType name="Markdown">
-      <summary usageCount="5" lastUsed="1776553083118" />
+      <summary usageCount="8" lastUsed="1776555345633" />
     </fileType>
     <fileType name="textmate">
-      <summary usageCount="12" lastUsed="1776553083492" />
+      <summary usageCount="24" lastUsed="1776555345914" />
     </fileType>
   </component>
   <component name="IgnoredFileRootStore">
@@ -73,10 +77,10 @@
   </component>
   <component name="LanguageUsageStatistics">
     <language id="Markdown">
-      <summary usageCount="5" lastUsage="1776553083119" />
+      <summary usageCount="8" lastUsage="1776555345635" />
     </language>
     <language id="textmate">
-      <summary usageCount="12" lastUsage="1776553083492" />
+      <summary usageCount="24" lastUsage="1776555345914" />
     </language>
   </component>
   <component name="ProjectView">
@@ -111,7 +115,7 @@
   <component name="ToolWindowManager">
     <layout>
       <window_info id="Bookmarks" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3203839" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15112434" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" />
@@ -123,9 +127,9 @@
       <window_info anchor="bottom" id="Problems View" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Services" order="8" />
-      <window_info active="true" anchor="right" id="React Flow Visualizer" order="0" visible="true" weight="0.33043873" />
+      <window_info active="true" anchor="right" id="React Flow Visualizer" order="0" visible="true" weight="0.682209" />
       <window_info anchor="right" id="Notifications" order="1" weight="0.25" />
-      <unified_weights left="0.3203839" right="0.33043873" />
+      <unified_weights left="0.15112434" right="0.682209" />
     </layout>
     <recentWindows>
       <value>React Flow Visualizer</value>
@@ -162,7 +166,11 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/components/src/App.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
