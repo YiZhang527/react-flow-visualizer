@@ -2136,3 +2136,20 @@ java.sql.SQLException: No suitable driver found for jdbc:sqlite:/Users/zhangyi/L
 2026-04-18 14:43:54,750 [ 303838]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
 2026-04-18 14:44:34,695 [ 343783]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
 2026-04-18 14:44:38,044 [ 347132]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:46:15,232 [ 444320]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:48:07,751 [ 556839]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:48:51,914 [ 601002]   INFO - #c.i.i.s.p.i.SharedIndexMainZipStorage - Shared Indexes Storage is opened and empty
+2026-04-18 14:50:59,135 [ 728223]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:52:05,774 [ 794862]   INFO - #c.i.o.a.i.PopupMenuPreloader - 4697 ms since showing to preload popup menu 'Editor Popup Menu' at 'EditorPopup(preload-bgt)' in 45 ms
+2026-04-18 14:52:05,775 [ 794863]   INFO - #c.i.o.a.i.PopupMenuPreloader - 4700 ms since showing to preload popup menu 'Editor Popup Menu' at 'EditorPopup(preload-bgt)' in 46 ms
+2026-04-18 14:52:21,580 [ 810668]   INFO - #c.i.o.a.i.PopupMenuPreloader - 4108 ms since showing to preload popup menu 'Editor Popup Menu' at 'EditorPopup(preload-bgt)' in 24 ms
+2026-04-18 14:52:21,592 [ 810680]   INFO - #c.i.o.a.i.PopupMenuPreloader - 4099 ms since showing to preload popup menu 'Editor Popup Menu' at 'EditorPopup(preload-bgt)' in 36 ms
+2026-04-18 14:54:06,732 [ 915820]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:54:15,978 [ 925066]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:55:51,030 [1020118]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:58:24,034 [1173122]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:58:36,988 [1186076]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 14:59:37,207 [1246295]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 15:08:49,022 [1798110]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 15:08:55,568 [1804656]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files
+2026-04-18 15:10:06,884 [1875972]   INFO - #c.i.w.i.i.j.s.JpsGlobalModelSynchronizerImpl - Saving global entities to files

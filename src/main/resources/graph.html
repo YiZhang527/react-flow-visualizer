@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #1e1e1e; font-family: -apple-system, sans-serif; overflow: hidden; }
+        svg { width: 100vw; height: 100vh; }
+        .link-props { stroke: #4a9eff; stroke-width: 2; fill: none; marker-end: url(#arrow-props); }
+        .link-state { stroke: #f0a500; stroke-width: 2; fill: none; stroke-dasharray: 6,4; marker-end: url(#arrow-state); }
+        .node rect { rx: 8; ry: 8; stroke-width: 2; cursor: pointer; }
+        .node rect:hover { filter: brightness(1.3); }
+        .node.has-state rect { stroke: #f0a500; fill: #2a2a1e; }
+        .node.no-state rect  { stroke: #4a9eff; fill: #1a2030; }
+        .node-name { fill: #e8e8e8; font-size: 14px; font-weight: 600; pointer-events: none; }
+        .node-sub { fill: #888; font-size: 11px; pointer-events: none; }
+        .node-badge { fill: #f0a500; font-size: 10px; font-weight: 700; pointer-events: none; }
+        .edge-label { fill: #4a9eff; font-size: 10px; pointer-events: none; }
+        #legend { position: fixed; bottom: 16px; left: 16px; background: #2a2a2a; border: 1px solid #444; border-radius: 8px; padding: 10px 14px; color: #ccc; font-size: 12px; }
+        .legend-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+        .legend-line { width: 28px; height: 2px; }
+        .legend-line.props { background: #4a9eff; }
+        .legend-line.state { border-top: 2px dashed #f0a500; height: 0; }
+    </style>
+</head>
+<body>
+<svg id="svg">
+    <defs>
+        <marker id="arrow-props" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#4a9eff"/>
+        </marker>
+        <marker id="arrow-state" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#f0a500"/>
+        </marker>
+    </defs>
+    <g id="root-g"></g>
+</svg>
+<div id="legend">
+    <div class="legend-row"><div class="legend-line props"></div> Props flow</div>
+    <div class="legend-row"><div class="legend-line state"></div> State update</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+    const NODE_W = 180, NODE_H = 64, H_GAP = 60, V_GAP = 100;
+
+    function buildLayout(data) {
+      const levels = {};
+      const queue = [data.rootName];
+      const visited = new Set([data.rootName]);
+      levels[data.rootName] = 0;
+      while (queue.length) {
+        const cur = queue.shift();
+        const node = data.components[cur];
+        if (!node) continue;
+        (node.children || []).forEach(child => {
+          if (!visited.has(child)) {
+            visited.add(child);
+            levels[child] = (levels[cur] || 0) + 1;
+            queue.push(child);
+          }
+        });
+      }
+      const byLevel = {};
+      Object.entries(levels).forEach(([name, lv]) => {
+        byLevel[lv] = byLevel[lv] || [];
+        byLevel[lv].push(name);
+      });
+      const positions = {};
+      Object.entries(byLevel).forEach(([lv, names]) => {
+        const y = lv * (NODE_H + V_GAP) + 40;
+        const totalW = names.length * NODE_W + (names.length - 1) * H_GAP;
+        const startX = (window.innerWidth - totalW) / 2;
+        names.forEach((name, i) => {
+          positions[name] = { x: startX + i * (NODE_W + H_GAP), y };
+        });
+      });
+      return positions;
+    }
+
+    function render(data) {
+      const svg = d3.select('#svg');
+      const g = d3.select('#root-g');
+      g.selectAll('*').remove();
+      const pos = buildLayout(data);
+      svg.call(d3.zoom().scaleExtent([0.3, 2]).on('zoom', e => g.attr('transform', e.transform)));
+
+      Object.entries(data.components).forEach(([parentName, node]) => {
+        (node.children || []).forEach(childName => {
+          const p = pos[parentName], c = pos[childName];
+          if (!p || !c) return;
+          const x1 = p.x + NODE_W/2, y1 = p.y + NODE_H;
+          const x2 = c.x + NODE_W/2, y2 = c.y;
+          const mx = (x1+x2)/2, my = (y1+y2)/2;
+          g.append('path')
+            .attr('class', node.hasUseState ? 'link-state' : 'link-props')
+            .attr('d', `M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}`);
+          const propsLabel = (node.props || []).join(', ');
+          if (propsLabel) {
+            g.append('text').attr('class','edge-label')
+              .attr('x', mx).attr('y', my-4).attr('text-anchor','middle')
+              .text('props: ' + propsLabel);
+          }
+        });
+      });
+
+      Object.entries(data.components).forEach(([name, node]) => {
+        const p = pos[name];
+        if (!p) return;
+        const grp = g.append('g')
+          .attr('class', 'node ' + (node.hasUseState ? 'has-state' : 'no-state'))
+          .attr('transform', `translate(${p.x},${p.y})`)
+          .style('cursor','pointer')
+          .on('click', () => { if (window.javaConnector) window.javaConnector.onNodeClicked(name); });
+        grp.append('rect').attr('width', NODE_W).attr('height', NODE_H);
+        grp.append('text').attr('class','node-name').attr('x',NODE_W/2).attr('y',24).attr('text-anchor','middle').text(name);
+        const sub = node.hasUseState ? 'has useState' : (node.props&&node.props.length ? 'receives props' : 'stateless');
+        grp.append('text').attr('class','node-sub').attr('x',NODE_W/2).attr('y',42).attr('text-anchor','middle').text(sub);
+        if (node.hasUseState) {
+          grp.append('text').attr('class','node-badge').attr('x',NODE_W-8).attr('y',14).attr('text-anchor','end').text('useState');
+        }
+      });
+    }
+
+    function initGraph(jsonStr) {
+      try { render(JSON.parse(jsonStr)); }
+      catch(e) { document.body.innerHTML = '<p style="color:red;padding:20px">Error: '+e.message+'</p>'; }
+    }
+
+    window.addEventListener('load', () => {
+      initGraph(JSON.stringify({
+        rootName: 'App',
+        components: {
+          App:     { hasUseState: true,  props: [],             children: ['Counter'] },
+          Counter: { hasUseState: false, props: ['count','onAdd'], children: ['Display','Button'] },
+          Display: { hasUseState: false, props: ['count'],      children: [] },
+          Button:  { hasUseState: false, props: ['onAdd'],      children: [] }
+        }
+      }));
+    });
+</script>
+</body>
+</html>
