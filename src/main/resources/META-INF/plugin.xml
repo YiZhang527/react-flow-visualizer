@@ -5,9 +5,9 @@
 
     <description><![CDATA[
         <p>ArchMap (v1): import graph for JavaScript/TypeScript (<code>js, jsx, mjs, cjs, ts, tsx</code>) in IntelliJ IDEA Community.</p>
-        <p><strong>What v1 shows:</strong> directed edges mean one file imports another via a resolved relative path — module/file dependency only.</p>
-        <p><strong>Not in v1:</strong> React parent/child at runtime, props flow, or state lifting (planned for a later AST-based phase).</p>
-        <p>Interactive Cytoscape view: hierarchical tree layout, zoom, pan, and a short on-screen guide for beginners.</p>
+        <p><strong>Imports:</strong> regex-resolved <code>import</code>/<code>require</code> edges (orange).</p>
+        <p><strong>JSX:</strong> Node+Babel adds <em>props</em> (blue) and <em>callback</em> (dashed, <code>on*</code> heuristic) when <code>node</code> is on PATH.</p>
+        <p>Interactive Cytoscape tree, zoom, pan, and on-screen legend.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>

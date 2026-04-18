@@ -13,6 +13,9 @@ out/
 # OS
 .DS_Store
 
+# Local npm (ArchMap Babel analyzer — bundle is committed under src/main/resources/archmap/)
+archmap-analyze/node_modules/
+
 # Python (backend)
 __pycache__/
 *.py[cod]

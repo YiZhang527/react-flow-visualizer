@@ -1,15 +1,18 @@
 package com.github.archmap
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.project.Project
 import java.io.File
 
 /**
- * Builds Cytoscape graph JSON from a regex scan of import statements (no PSI / AST).
+ * Hybrid graph: regex import edges + optional Babel JSX props/callback edges (scheme D).
  */
 object RegexArchGraph {
 
     private val gson = Gson()
+    private val log = Logger.getInstance(RegexArchGraph::class.java)
 
     private val SKIP_DIRS = setOf(
         "node_modules", ".git", ".svn", "dist", "build", ".next", ".nuxt",
@@ -23,18 +26,33 @@ object RegexArchGraph {
     )
 
     data class GraphMeta(
-        /** All matching source files walked (js/ts variants). */
         val filesScanned: Int,
-        /** Nodes currently shown (participate in at least one resolved import edge). */
         val filesInGraph: Int,
-        /** Directed edges: source file imports target file. */
-        val importEdges: Int
+        val importEdges: Int,
+        val propsEdges: Int = 0,
+        val callbackEdges: Int = 0,
+        /** Babel analyzer ran and JSON was parsed (Node on PATH, bundle present). */
+        val babelOk: Boolean = false
     )
 
     data class GraphPayload(
         val nodes: List<GraphNodeJson>,
         val edges: List<GraphEdgeJson>,
         val meta: GraphMeta
+    )
+
+    data class ReceivedPropJson(
+        val name: String,
+        val kind: String,
+        val fromRel: String,
+        val fromLabel: String
+    )
+
+    data class PassDownJson(
+        val prop: String,
+        val kind: String,
+        val toRel: String,
+        val toLabel: String
     )
 
     data class GraphNodeJson(
@@ -44,7 +62,8 @@ object RegexArchGraph {
         val roleDetail: String,
         val filePath: String,
         val relPath: String,
-        val receivesProps: List<String> = emptyList(),
+        val receivesProps: List<ReceivedPropJson> = emptyList(),
+        val passesDown: List<PassDownJson> = emptyList(),
         val exports: List<String> = emptyList(),
         val renders: List<NodeRef> = emptyList(),
         val usedBy: List<NodeRef> = emptyList()
@@ -52,7 +71,11 @@ object RegexArchGraph {
 
     data class NodeRef(val id: String, val label: String)
 
-    data class GraphEdgeJson(val source: String, val target: String)
+    data class GraphEdgeJson(
+        val source: String,
+        val target: String,
+        val kind: String = "import"
+    )
 
     private data class Row(val fromRel: String, val module: String, val toRel: String?)
 
@@ -61,45 +84,122 @@ object RegexArchGraph {
     fun buildJson(project: Project): String {
         val root = project.basePath
             ?: return gson.toJson(GraphPayload(emptyList(), emptyList(), GraphMeta(0, 0, 0)))
-        val base = File(root).canonicalPath
-        val scan = scanProject(File(base), base)
-        val rows = scan.rows
-        val edgePairs = rows.mapNotNull { r -> r.toRel?.let { r.fromRel to it } }.toSet()
-        if (edgePairs.isEmpty()) {
-            return gson.toJson(GraphPayload(emptyList(), emptyList(), GraphMeta(scan.filesScanned, 0, 0)))
+        val baseFile = File(root).canonicalFile
+        val base = baseFile.path
+
+        val scan = scanProject(baseFile, base)
+        val importPairs = scan.rows.mapNotNull { r -> r.toRel?.let { r.fromRel to it } }.toSet()
+
+        val babelJson = try {
+            BabelBridge.run(baseFile)
+        } catch (e: Exception) {
+            log.warn("ArchMap BabelBridge", e)
+            null
         }
 
-        val nodeIds = mutableSetOf<String>()
-        for ((a, b) in edgePairs) {
+        val babel = babelJson?.let { json ->
+            try {
+                gson.fromJson(json, BabelRoot::class.java)
+            } catch (e: JsonSyntaxException) {
+                log.warn("ArchMap: invalid babel JSON: ${e.message}")
+                null
+            }
+        }
+
+        val babelEdges = babel?.edges?.filter { it.kind == "props" || it.kind == "callback" } ?: emptyList()
+        val importEdgeList = importPairs.map { GraphEdgeJson(it.first, it.second, "import") }
+        val allEdges = importEdgeList + babelEdges.map { GraphEdgeJson(it.source, it.target, it.kind) }
+
+        val nodeIds = LinkedHashSet<String>()
+        importPairs.forEach { (a, b) ->
             nodeIds.add(a)
             nodeIds.add(b)
+        }
+        babelEdges.forEach { e ->
+            nodeIds.add(e.source)
+            nodeIds.add(e.target)
+        }
+        babel?.fileSummaries?.keys?.forEach { nodeIds.add(it) }
+        babel?.fileSummaries?.forEach { (_, summary) ->
+            summary.usages.forEach { u -> u.resolved?.let { nodeIds.add(it) } }
+            summary.passesDown.forEach { p -> nodeIds.add(p.toRel) }
+        }
+
+        if (nodeIds.isEmpty()) {
+            return gson.toJson(
+                GraphPayload(
+                    emptyList(),
+                    emptyList(),
+                    GraphMeta(scan.filesScanned, 0, 0, 0, 0, babel != null)
+                )
+            )
         }
 
         val outMap = mutableMapOf<String, MutableSet<String>>()
         val inMap = mutableMapOf<String, MutableSet<String>>()
-        for ((s, t) in edgePairs) {
+        for ((s, t) in importPairs) {
             outMap.getOrPut(s) { mutableSetOf() }.add(t)
             inMap.getOrPut(t) { mutableSetOf() }.add(s)
         }
 
-        val edges = edgePairs.map { GraphEdgeJson(it.first, it.second) }.sortedWith(compareBy({ it.source }, { it.target }))
+        val receives = mutableMapOf<String, MutableList<ReceivedPropJson>>()
+        babel?.fileSummaries?.forEach { (fromRel, summary) ->
+            val fromLabel = stemLabel(File(baseFile, fromRel))
+            for (u in summary.usages) {
+                val target = u.resolved ?: continue
+                for (p in u.props) {
+                    receives.getOrPut(target) { mutableListOf() }.add(
+                        ReceivedPropJson(p.name, p.kind, fromRel, fromLabel)
+                    )
+                }
+            }
+        }
+
+        val passesByFile = mutableMapOf<String, List<PassDownJson>>()
+        babel?.fileSummaries?.forEach { (fromRel, summary) ->
+            val list = summary.passesDown.map { pd ->
+                PassDownJson(pd.prop, pd.kind, pd.toRel, pd.toLabel)
+            }
+            if (list.isNotEmpty()) passesByFile[fromRel] = list
+        }
 
         val nodes = nodeIds.map { rel ->
-            val f = File(base, rel)
+            val f = File(baseFile, rel)
             val label = stemLabel(f)
             val (role, roleDetail) = classify(rel, label)
             val filePath = f.absolutePath
             val renders = outMap[rel]?.map { tid ->
-                NodeRef(tid, stemLabel(File(base, tid)))
+                NodeRef(tid, stemLabel(File(baseFile, tid)))
             }?.sortedBy { it.label } ?: emptyList()
             val usedBy = inMap[rel]?.map { sid ->
-                NodeRef(sid, stemLabel(File(base, sid)))
+                NodeRef(sid, stemLabel(File(baseFile, sid)))
             }?.sortedBy { it.label } ?: emptyList()
-            GraphNodeJson(rel, label, role, roleDetail, filePath, rel, emptyList(), emptyList(), renders, usedBy)
+            val rec = receives[rel]?.sortedWith(compareBy({ it.fromRel }, { it.name })) ?: emptyList()
+            val pdown = passesByFile[rel] ?: emptyList()
+            GraphNodeJson(
+                rel, label, role, roleDetail, filePath, rel,
+                rec, pdown, emptyList(), renders, usedBy
+            )
         }.sortedWith(compareBy({ it.role }, { it.label }))
 
+        val sortedEdges = allEdges.sortedWith(compareBy({ it.kind }, { it.source }, { it.target }))
+
+        val nProps = babelEdges.count { it.kind == "props" }
+        val nCb = babelEdges.count { it.kind == "callback" }
+
         return gson.toJson(
-            GraphPayload(nodes, edges, GraphMeta(scan.filesScanned, nodes.size, edges.size))
+            GraphPayload(
+                nodes,
+                sortedEdges,
+                GraphMeta(
+                    scan.filesScanned,
+                    nodes.size,
+                    importEdgeList.size,
+                    nProps,
+                    nCb,
+                    babel != null
+                )
+            )
         )
     }
 

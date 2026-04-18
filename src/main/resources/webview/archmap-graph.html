@@ -74,6 +74,14 @@ details.guide .guide-body li { margin: 4px 0 4px 18px; }
   position: absolute; right: -1px; top: -5px;
   border: 4px solid transparent; border-left-color: #fab387;
 }
+.legend-edge.props .mini-line { border-top-color: #89b4fa; }
+.legend-edge.props .mini-line::after { border-left-color: #89b4fa; }
+.legend-edge.callback .mini-line {
+  border-top-style: dashed;
+}
+.legend-edge.callback .mini-line::after {
+  border-left-color: #fab387;
+}
 
 #cy { flex: 1; min-height: 0; }
 
@@ -106,6 +114,7 @@ details.guide .guide-body li { margin: 4px 0 4px 18px; }
 .d-tag.prop { color: #f9e2af; }
 .d-tag.export { color: #a6e3a1; }
 .d-tag.comp { color: #89b4fa; border: 1px solid #89b4fa33; }
+.d-tag.cb { color: #fab387; border: 1px solid #fab38755; }
 
 .d-dep { display: flex; align-items: center; gap: 6px; padding: 3px 6px; border-radius: 4px; cursor: pointer; font-size: 12px; }
 .d-dep:hover { background: #313244; }
@@ -131,10 +140,12 @@ details.guide .guide-body li { margin: 4px 0 4px 18px; }
   <button type="button" onclick="zoomIn()" title="Zoom in">+</button>
   <button type="button" onclick="zoomOut()" title="Zoom out">−</button>
   <button type="button" onclick="relayoutTree()" title="Re-apply hierarchical tree layout">Re-layout</button>
-  <span style="margin-left:4px;color:#6c7086;font-size:11px;user-select:none;">— Imports</span>
+  <span style="margin-left:4px;color:#6c7086;font-size:11px;user-select:none;">— Edges</span>
   <div class="toolbar-sep"></div>
   <div class="legend">
-    <span class="legend-edge" title="Import direction: importer → imported file"><span class="mini-line"></span> import direction</span>
+    <span class="legend-edge" title="Import: importer → imported file"><span class="mini-line"></span> import</span>
+    <span class="legend-edge props" title="JSX data props (heuristic)"><span class="mini-line"></span> props</span>
+    <span class="legend-edge callback" title="JSX callbacks (on*)"><span class="mini-line"></span> callback</span>
     <span><span class="legend-dot" style="background:#f38ba8"></span> Entry main/index</span>
     <span><span class="legend-dot" style="background:#cba6f7"></span> Page</span>
     <span><span class="legend-dot" style="background:#89b4fa"></span> Component</span>
@@ -144,18 +155,17 @@ details.guide .guide-body li { margin: 4px 0 4px 18px; }
 </div>
 
 <div id="hint-bar">
-  <strong>Arrows:</strong> point from the file that <strong>imports</strong> to the file being <strong>imported</strong> — that is <strong>module dependency in source</strong>, not React props or runtime parent/child.
-  Nodes with a light rim are often <code>main</code>/<code>index</code> entry files (heuristic).
-  <strong>Zoom:</strong> mouse wheel or trackpad pinch over the graph; drag empty space to pan. Use <strong>+</strong> / <strong>−</strong> if the wheel is captured by the IDE.
+  <strong>Edges:</strong> <em>import</em> (orange) = module dependency from regex. <em>props</em> (blue) / <em>callback</em> (dashed orange) = JSX from Babel (<code>onX</code> → callback; other attributes → data). Requires <strong>Node.js</strong> on PATH for JSX lines.
+  Entry nodes: <code>main</code>/<code>index</code> heuristic. <strong>Zoom:</strong> wheel / pinch / <strong>+</strong> <strong>−</strong>; drag background to pan.
 </div>
 
 <details class="guide">
   <summary>How to read this graph</summary>
   <div class="guide-body">
     <ul>
-      <li>Start from an <strong>entry</strong> (pink node or <code>main</code>/<code>index</code> near the top in Tree layout) and follow arrows to see who pulls in whom.</li>
-      <li><strong>Parent/child</strong> in React often aligns with import direction, but v1 only models file dependencies; props and state flow will come in a later AST phase.</li>
-      <li>Click a node for details: files <strong>this file imports</strong> and files that <strong>import this file</strong>; paths link into the IDE.</li>
+      <li>Start from an <strong>entry</strong> (pink rim) and follow <strong>import</strong> arrows for module structure.</li>
+      <li><strong>props/callback</strong> edges come from JSX; they add how data and handlers flow between files (heuristic, not full types).</li>
+      <li>Detail panel: <strong>Receives props</strong>, <strong>Passes down</strong>, and import lists.</li>
     </ul>
   </div>
 </details>
@@ -190,6 +200,15 @@ function nodeLabel(n) {
   return n.label + '\n' + shortRelPath(n.relPath);
 }
 
+function escHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function buildElements(data) {
   var elements = [];
   (data.nodes || []).forEach(function(n) {
@@ -207,7 +226,15 @@ function buildElements(data) {
     });
   });
   (data.edges || []).forEach(function(e, i) {
-    elements.push({ data: { id: 'e' + i, source: e.source, target: e.target } });
+    var k = e.kind || 'import';
+    elements.push({
+      data: {
+        id: 'e_' + k + '_' + i,
+        source: e.source,
+        target: e.target,
+        kind: k
+      }
+    });
   });
   return elements;
 }
@@ -239,8 +266,19 @@ function initGraph(elements) {
         'border-color': '#f5e0dc',
         'padding': '12px'
       }},
-      { selector: 'edge', style: {
+      { selector: "edge[kind = 'import']", style: {
         'width': 1.5, 'line-color': '#fab387', 'target-arrow-color': '#fab387',
+        'line-style': 'solid',
+        'target-arrow-shape': 'triangle', 'arrow-scale': 0.85, 'curve-style': 'bezier'
+      }},
+      { selector: "edge[kind = 'props']", style: {
+        'width': 1.8, 'line-color': '#89b4fa', 'target-arrow-color': '#89b4fa',
+        'line-style': 'solid',
+        'target-arrow-shape': 'triangle', 'arrow-scale': 0.85, 'curve-style': 'bezier'
+      }},
+      { selector: "edge[kind = 'callback']", style: {
+        'width': 1.8, 'line-color': '#fab387', 'target-arrow-color': '#fab387',
+        'line-style': 'dashed',
         'target-arrow-shape': 'triangle', 'arrow-scale': 0.85, 'curve-style': 'bezier'
       }},
       { selector: 'node.dimmed', style: { 'opacity': 0.12 } },
@@ -285,24 +323,37 @@ function showDetail(id) {
   var rc = 'r-' + n.role;
   var esc = (n.filePath || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
 
-  var html = '<div class="d-v1-note">v1: lists and edges come from <strong>import resolution</strong> only — not JSX hierarchy or props.</div>' +
+  var html = '<div class="d-v1-note">Hybrid: <strong>import</strong> from regex; <strong>props/callback</strong> from Babel JSX (needs Node). Callback = <code>onX</code> heuristic.</div>' +
     '<div class="d-header">' +
-    '<span class="d-name">' + n.label + '</span>' +
-    '<span class="d-role ' + rc + '">' + (n.roleDetail || n.role) + '</span>' +
+    '<span class="d-name">' + escHtml(n.label) + '</span>' +
+    '<span class="d-role ' + rc + '">' + escHtml(n.roleDetail || n.role) + '</span>' +
     '<span class="d-close" onclick="closeDetail()">&times;</span></div>' +
-    '<div class="d-path" onclick="nav(\'' + esc + '\')">' + (n.relPath || '') + ' — click to open in IDE</div>' +
+    '<div class="d-path" onclick="nav(\'' + esc + '\')">' + escHtml(n.relPath || '') + ' — click to open in IDE</div>' +
     '<div class="d-cols">';
 
   var col1 = '';
   if (n.receivesProps && n.receivesProps.length > 0) {
-    col1 += '<div class="d-section"><div class="d-sec-title">Receives props (AST later)</div>' +
-      n.receivesProps.map(function(x){ return '<span class="d-tag prop">' + x + '</span>'; }).join('') + '</div>';
+    col1 += '<div class="d-section"><div class="d-sec-title">Receives props (JSX)</div>' +
+      n.receivesProps.map(function(p) {
+        var cls = p.kind === 'callback' ? 'd-tag cb' : 'd-tag comp';
+        return '<span class="' + cls + '" title="' + escHtml(p.fromRel) + '">' +
+          escHtml(p.name) + ' \u2190 ' + escHtml(p.fromLabel) + '</span>';
+      }).join(' ') + '</div>';
+  }
+  if (n.passesDown && n.passesDown.length > 0) {
+    col1 += '<div class="d-section"><div class="d-sec-title">Passes down</div>' +
+      n.passesDown.map(function(pd) {
+        var rid = pd.toRel.replace(/'/g, "\\'");
+        var c = pd.kind === 'callback' ? 'cb' : 'comp';
+        return '<div class="d-dep" onclick="selectNode(\'' + rid + '\')"><span class="d-tag ' + c + '">' + escHtml(pd.prop) +
+          '</span> \u2192 ' + escHtml(pd.toLabel) + '</div>';
+      }).join('') + '</div>';
   }
   if (n.exports && n.exports.length > 0) {
-    col1 += '<div class="d-section"><div class="d-sec-title">Exports (AST later)</div>' +
+    col1 += '<div class="d-section"><div class="d-sec-title">Exports (later)</div>' +
       n.exports.map(function(x){
         var c = (x[0] >= 'A' && x[0] <= 'Z') ? 'd-tag comp' : 'd-tag export';
-        return '<span class="' + c + '">' + x + '</span>';
+        return '<span class="' + c + '">' + escHtml(x) + '</span>';
       }).join('') + '</div>';
   }
 
@@ -311,18 +362,18 @@ function showDetail(id) {
     col2 += '<div class="d-section"><div class="d-sec-title">Files this file imports (\u2192)</div>' +
       n.renders.map(function(r){
         var rid = r.id.replace(/'/g,"\\'");
-        return '<div class="d-dep" onclick="selectNode(\'' + rid + '\')"><span class="arrow out">&rarr;</span> ' + r.label + '</div>';
+        return '<div class="d-dep" onclick="selectNode(\'' + rid + '\')"><span class="arrow out">&rarr;</span> ' + escHtml(r.label) + '</div>';
       }).join('') + '</div>';
   }
   if (n.usedBy && n.usedBy.length > 0) {
     col2 += '<div class="d-section"><div class="d-sec-title">Files that import this file (\u2190)</div>' +
       n.usedBy.map(function(u){
         var uid = u.id.replace(/'/g,"\\'");
-        return '<div class="d-dep" onclick="selectNode(\'' + uid + '\')"><span class="arrow in">&larr;</span> ' + u.label + '</div>';
+        return '<div class="d-dep" onclick="selectNode(\'' + uid + '\')"><span class="arrow in">&larr;</span> ' + escHtml(u.label) + '</div>';
       }).join('') + '</div>';
   }
 
-  html += '<div class="d-col">' + (col1 || '<div class="d-section" style="color:#585b70;font-size:12px">No props/exports yet (v1 has no AST)</div>') + '</div>';
+  html += '<div class="d-col">' + (col1 || '<div class="d-section" style="color:#585b70;font-size:12px">No JSX props in graph (install Node or no parents)</div>') + '</div>';
   html += '<div class="d-col">' + (col2 || '<div class="d-section" style="color:#585b70;font-size:12px">No import relationships</div>') + '</div>';
   html += '</div>';
 
@@ -365,18 +416,28 @@ function updateStatus() {
   var meta = window.__graphData && window.__graphData.meta;
   var nNodes = cy.nodes().length;
   var nEdges = cy.edges().length;
-  var s = nNodes + ' nodes · ' + nEdges + ' import edges';
+  var s = '';
   if (meta && typeof meta.filesScanned === 'number') {
-    s = 'Scanned ' + meta.filesScanned + ' files · ' + s;
+    s = 'Scanned ' + meta.filesScanned + ' files · ';
   }
+  s += nNodes + ' nodes · ' + nEdges + ' edges';
+  if (meta && typeof meta.importEdges === 'number') {
+    s += ' (' + meta.importEdges + ' imp';
+    if (meta.propsEdges) s += ', ' + meta.propsEdges + ' props';
+    if (meta.callbackEdges) s += ', ' + meta.callbackEdges + ' cb';
+    s += ')';
+  }
+  if (meta && meta.babelOk === false) s += ' · no Babel';
+  else if (meta && meta.babelOk === true) s += ' · Babel';
   el.textContent = s;
 }
 
 function emptyStatusMessage(meta) {
+  var hint = (meta && meta.babelOk === false) ? ' Install Node.js for Babel/JSX edges.' : '';
   if (meta && typeof meta.filesScanned === 'number' && meta.filesScanned > 0) {
-    return 'Scanned ' + meta.filesScanned + ' files but no edges (check relative imports, path aliases, or external-only imports).';
+    return 'Scanned ' + meta.filesScanned + ' files but no graph edges.' + hint + ' Check relative imports and JSX usage.';
   }
-  return 'No data: no resolvable in-project import edges.';
+  return 'No data: no edges from imports or JSX.' + hint;
 }
 
 /*__BRIDGE__*/
