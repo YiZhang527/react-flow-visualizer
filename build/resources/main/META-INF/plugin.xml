@@ -1,0 +1,12 @@
+<idea-plugin>
+  <idea-version since-build="232" until-build="241.*" />
+  <version>0.1.0</version>
+  <id>com.github.reactflow.react-flow-visualizer</id>
+  <name>React Flow Visualizer</name>
+  <vendor email="your-email@example.com">React Flow Team</vendor>
+  <description><![CDATA[A minimal tool window plugin for React Flow Visualizer.]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="React Flow Visualizer" anchor="right" factoryClass="com.github.reactflow.MyToolWindowFactory" icon="AllIcons.General.Modified" />
+  </extensions>
+</idea-plugin>

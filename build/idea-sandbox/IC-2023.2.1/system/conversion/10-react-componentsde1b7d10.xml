@@ -1,0 +1,13 @@
+<conversion>
+  <applied-converters>
+    <converter id="kotlin-non-jvm-source-roots" />
+    <converter id="rules-persistent-state-converter" />
+  </applied-converters>
+  <project-files>
+    <f p="./.idea/workspace.xml" t="1776545333" />
+    <f p="./.idea/vcs.xml" t="1776544913" />
+    <f p="./.idea/modules.xml" t="1776544913" />
+    <f p="./.idea/10-react-components.iml" t="1776544913" />
+    <f p="./.idea/misc.xml" t="1776544913" />
+  </project-files>
+</conversion>
