@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.2.0"
 }
 
-group = "com.github.reactflow"
+group = "com.github.archmap"
 version = "0.1.0"
 
 repositories {
@@ -16,13 +16,14 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        create("IC", "2023.2.1")
+        intellijIdeaCommunity("2023.2.1")
     }
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 intellijPlatform {
     pluginConfiguration {
-        name = "React Flow Visualizer"
+        name = "ArchMap"
         version = "0.1.0"
         ideaVersion {
             sinceBuild = "232"

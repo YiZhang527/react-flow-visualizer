@@ -1,18 +1,28 @@
 <idea-plugin>
-    <id>com.github.reactflow.react-flow-visualizer</id>
-    <name>React Flow Visualizer</name>
-    <vendor email="your-email@example.com">React Flow Team</vendor>
+    <id>com.github.archmap</id>
+    <name>ArchMap</name>
+    <vendor email="archmap@example.com">ArchMap Team</vendor>
 
     <description><![CDATA[
-        A minimal tool window plugin for React Flow Visualizer.
+        <p>ArchMap (v1): import graph for JavaScript/TypeScript (<code>js, jsx, mjs, cjs, ts, tsx</code>) in IntelliJ IDEA Community.</p>
+        <p><strong>What v1 shows:</strong> directed edges mean one file imports another via a resolved relative path — module/file dependency only.</p>
+        <p><strong>Not in v1:</strong> React parent/child at runtime, props flow, or state lifting (planned for a later AST-based phase).</p>
+        <p>Interactive Cytoscape view: hierarchical tree layout, zoom, pan, and a short on-screen guide for beginners.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="React Flow Visualizer"
+        <toolWindow id="ArchMap"
                     anchor="right"
-                    factoryClass="com.github.reactflow.MyToolWindowFactory"
-                    icon="AllIcons.General.Modified"/>
+                    factoryClass="com.github.archmap.ArchMapToolWindowFactory"
+                    icon="AllIcons.Actions.ProjectDirectory"/>
+        <postStartupActivity
+                    implementation="com.github.archmap.ArchMapStartupActivity"/>
     </extensions>
+
+    <applicationListeners>
+        <listener class="com.github.archmap.FileChangeListener"
+                  topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </applicationListeners>
 </idea-plugin>

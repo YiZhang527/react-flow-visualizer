@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchMap</title>
+<script src="cytoscape.min.js"></script>
+<script src="cytoscape-cose-bilkent.js"></script>
+<script src="graph-data.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+  body {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #181825;
+    border-bottom: 1px solid #313244;
+    flex-shrink: 0;
+  }
+  #toolbar button {
+    background: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  #toolbar button:hover { background: #45475a; }
+  #toolbar .status {
+    margin-left: auto;
+    font-size: 11px;
+    color: #6c7086;
+  }
+
+  #cy {
+    flex: 1;
+    min-height: 0;
+  }
+
+  #detail-panel {
+    display: none;
+    flex-shrink: 0;
+    max-height: 40%;
+    overflow-y: auto;
+    background: #181825;
+    border-top: 2px solid #313244;
+    padding: 12px 16px;
+  }
+  #detail-panel.visible { display: block; }
+
+  .detail-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .detail-header .node-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #cba6f7;
+  }
+  .detail-header .file-chip {
+    font-size: 11px;
+    background: #313244;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #a6adc8;
+    cursor: pointer;
+  }
+  .detail-header .file-chip:hover { background: #45475a; }
+  .detail-header .close-btn {
+    margin-left: auto;
+    cursor: pointer;
+    color: #6c7086;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 4px;
+  }
+  .detail-header .close-btn:hover { color: #f38ba8; }
+
+  .detail-section {
+    margin-bottom: 8px;
+  }
+  .detail-section h3 {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #a6adc8;
+  }
+  .detail-section .edge-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 0;
+    font-size: 13px;
+  }
+  .edge-item .arrow { color: #6c7086; }
+  .edge-item .module-name { color: #89b4fa; }
+  .edge-item .fn-name { color: #a6adc8; }
+  .edge-item .jump-btn {
+    color: #89b4fa;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .edge-item .jump-btn:hover { color: #74c7ec; text-decoration: underline; }
+
+  .functions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .functions-list .fn-tag {
+    font-size: 11px;
+    background: #313244;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #a6e3a1;
+  }
+
+  #empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #6c7086;
+    gap: 8px;
+  }
+  #empty-state .icon { font-size: 48px; }
+  #empty-state .msg { font-size: 14px; }
+  #empty-state.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <button onclick="fitGraph()">Fit</button>
+  <button onclick="relayout()">Re-layout</button>
+  <span class="status" id="status">No data</span>
+</div>
+
+<div id="cy">
+  <div id="empty-state">
+    <div class="icon">&#128506;</div>
+    <div class="msg">Waiting for project data...</div>
+    <div class="msg" style="font-size:12px;">Make sure the Python backend is running on port 8742</div>
+    <div class="msg" id="debug-info" style="font-size:11px; color:#f38ba8; margin-top:8px;"></div>
+  </div>
+</div>
+
+<div id="detail-panel">
+  <div class="detail-header">
+    <span class="node-name" id="detail-name"></span>
+    <span class="file-chip" id="detail-path" onclick="navigateToFile(this.dataset.path, 0)"></span>
+    <span class="close-btn" onclick="closeDetail()">&times;</span>
+  </div>
+  <div class="detail-section" id="detail-functions">
+    <h3>Functions</h3>
+    <div class="functions-list" id="fn-list"></div>
+  </div>
+  <div class="detail-section" id="detail-calls">
+    <h3 id="calls-header">Calls (0)</h3>
+    <div id="calls-list"></div>
+  </div>
+  <div class="detail-section" id="detail-called-by">
+    <h3 id="called-by-header">Called by (0)</h3>
+    <div id="called-by-list"></div>
+  </div>
+</div>
+
+<script>
+const LAYER_COLORS = {
+  purple: { bg: '#cba6f7', border: '#9d7cd8', text: '#1e1e2e' },
+  blue:   { bg: '#89b4fa', border: '#7aa2f7', text: '#1e1e2e' },
+  green:  { bg: '#a6e3a1', border: '#73daca', text: '#1e1e2e' },
+  gray:   { bg: '#6c7086', border: '#585b70', text: '#1e1e2e' },
+};
+
+let cy = null;
+let currentSelectedNode = null;
+
+function initCytoscape(elements) {
+  document.getElementById('empty-state').classList.add('hidden');
+
+  if (cy) {
+    cy.destroy();
+  }
+
+  cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements: elements,
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'label': 'data(label)',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'font-size': '11px',
+          'font-weight': '500',
+          'color': 'data(textColor)',
+          'background-color': 'data(bgColor)',
+          'border-color': 'data(borderColor)',
+          'border-width': 2,
+          'width': 'label',
+          'height': 32,
+          'padding': '10px',
+          'shape': 'roundrectangle',
+          'text-wrap': 'none',
+          'transition-property': 'opacity',
+          'transition-duration': '0.2s',
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'width': 1.5,
+          'line-color': '#45475a',
+          'target-arrow-color': '#45475a',
+          'target-arrow-shape': 'triangle',
+          'arrow-scale': 0.8,
+          'curve-style': 'bezier',
+          'transition-property': 'line-color, target-arrow-color, opacity, width',
+          'transition-duration': '0.2s',
+        }
+      },
+      {
+        selector: 'node.dimmed',
+        style: { 'opacity': 0.15 }
+      },
+      {
+        selector: 'edge.dimmed',
+        style: { 'opacity': 0.08 }
+      },
+      {
+        selector: 'edge.highlight-out',
+        style: {
+          'line-color': '#fab387',
+          'target-arrow-color': '#fab387',
+          'width': 2.5,
+          'z-index': 10,
+        }
+      },
+      {
+        selector: 'edge.highlight-in',
+        style: {
+          'line-color': '#89b4fa',
+          'target-arrow-color': '#89b4fa',
+          'width': 2.5,
+          'z-index': 10,
+        }
+      },
+      {
+        selector: 'node.selected-node',
+        style: {
+          'border-width': 3,
+          'border-color': '#f5c2e7',
+          'z-index': 20,
+        }
+      }
+    ],
+    layout: {
+      name: 'cose-bilkent',
+      animate: false,
+      nodeDimensionsIncludeLabels: true,
+      idealEdgeLength: 120,
+      nodeRepulsion: 8000,
+      gravity: 0.25,
+      numIter: 2500,
+      tile: true,
+    },
+    minZoom: 0.1,
+    maxZoom: 4,
+    wheelSensitivity: 0.3,
+  });
+
+  cy.on('tap', 'node', function (evt) {
+    const node = evt.target;
+    selectNode(node);
+  });
+
+  cy.on('tap', function (evt) {
+    if (evt.target === cy) {
+      clearSelection();
+    }
+  });
+
+  updateStatus();
+}
+
+function selectNode(node) {
+  clearHighlights();
+  currentSelectedNode = node.id();
+
+  cy.elements().addClass('dimmed');
+  node.removeClass('dimmed').addClass('selected-node');
+
+  const outEdges = node.outgoers('edge');
+  const inEdges = node.incomers('edge');
+
+  outEdges.removeClass('dimmed').addClass('highlight-out');
+  inEdges.removeClass('dimmed').addClass('highlight-in');
+
+  outEdges.targets().removeClass('dimmed');
+  inEdges.sources().removeClass('dimmed');
+
+  showDetail(node);
+}
+
+function clearSelection() {
+  clearHighlights();
+  closeDetail();
+  currentSelectedNode = null;
+}
+
+function clearHighlights() {
+  if (!cy) return;
+  cy.elements().removeClass('dimmed selected-node highlight-out highlight-in');
+}
+
+function showDetail(node) {
+  const data = node.data();
+  const panel = document.getElementById('detail-panel');
+
+  document.getElementById('detail-name').textContent = data.label;
+  const pathEl = document.getElementById('detail-path');
+  pathEl.textContent = data.id;
+  pathEl.dataset.path = data.filePath;
+
+  const fnList = document.getElementById('fn-list');
+  fnList.innerHTML = '';
+  (data.functions || []).forEach(fn => {
+    const tag = document.createElement('span');
+    tag.className = 'fn-tag';
+    tag.textContent = fn;
+    fnList.appendChild(tag);
+  });
+
+  const outEdges = node.outgoers('edge');
+  const callsList = document.getElementById('calls-list');
+  callsList.innerHTML = '';
+  document.getElementById('calls-header').textContent = `Calls (${outEdges.length})`;
+  outEdges.forEach(edge => {
+    const target = edge.target();
+    callsList.appendChild(createEdgeItem('→', target.data('label'), edge.data('label'), target.data('filePath')));
+  });
+
+  const inEdges = node.incomers('edge');
+  const calledByList = document.getElementById('called-by-list');
+  calledByList.innerHTML = '';
+  document.getElementById('called-by-header').textContent = `Called by (${inEdges.length})`;
+  inEdges.forEach(edge => {
+    const source = edge.source();
+    calledByList.appendChild(createEdgeItem('←', source.data('label'), edge.data('label'), source.data('filePath')));
+  });
+
+  panel.classList.add('visible');
+}
+
+function createEdgeItem(arrow, moduleName, fnName, filePath) {
+  const div = document.createElement('div');
+  div.className = 'edge-item';
+  div.innerHTML = `
+    <span class="arrow">${arrow}</span>
+    <span class="module-name">${moduleName}</span>
+    <span class="fn-name">${fnName ? '.' + fnName + '()' : ''}</span>
+    <span class="jump-btn" onclick="navigateToFile('${filePath.replace(/'/g, "\\'")}', 0)">Open ↗</span>
+  `;
+  return div;
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('visible');
+}
+
+function navigateToFile(filePath, line) {
+  if (window.__cefNavigate) {
+    window.__cefNavigate(JSON.stringify({ filePath: filePath, line: line || 0 }));
+  }
+}
+
+function fitGraph() {
+  if (cy) cy.fit(null, 30);
+}
+
+function relayout() {
+  if (!cy) return;
+  cy.layout({
+    name: 'cose-bilkent',
+    animate: true,
+    animationDuration: 500,
+    nodeDimensionsIncludeLabels: true,
+    idealEdgeLength: 120,
+    nodeRepulsion: 8000,
+    gravity: 0.25,
+    numIter: 2500,
+    tile: true,
+  }).run();
+}
+
+function updateStatus() {
+  if (!cy) return;
+  const nn = cy.nodes().length;
+  const ne = cy.edges().length;
+  document.getElementById('status').textContent = `${nn} nodes, ${ne} edges`;
+}
+
+function graphDataToElements(data) {
+  const elements = [];
+  (data.nodes || []).forEach(n => {
+    const colors = LAYER_COLORS[n.layer] || LAYER_COLORS.gray;
+    elements.push({
+      data: {
+        id: n.id,
+        label: n.label,
+        filePath: n.filePath,
+        layer: n.layer,
+        functions: n.functions || [],
+        imports: n.imports || [],
+        exports: n.exports || [],
+        calls: n.calls || [],
+        description: n.description || '',
+        bgColor: colors.bg,
+        borderColor: colors.border,
+        textColor: colors.text,
+      }
+    });
+  });
+  (data.edges || []).forEach(e => {
+    elements.push({
+      data: {
+        id: e.source + '->' + e.target + ':' + (e.label || ''),
+        source: e.source,
+        target: e.target,
+        label: e.label || '',
+      }
+    });
+  });
+  return elements;
+}
+
+/* ---------- Public API called from Kotlin ---------- */
+
+window.loadGraph = function(data) {
+  var dbg = document.getElementById('debug-info');
+  try {
+    if (typeof data === 'string') {
+      data = JSON.parse(data);
+    }
+    if (!data || (!data.nodes && !data.edges)) {
+      if (dbg) dbg.textContent = 'loadGraph: no data. Received: ' + JSON.stringify(data).substring(0, 300);
+      return;
+    }
+    if (data.nodes && data.nodes.length === 0 && data.error) {
+      if (dbg) dbg.textContent = 'Backend error: ' + data.error;
+      return;
+    }
+    if (dbg) dbg.textContent = 'Rendering ' + (data.nodes || []).length + ' nodes...';
+    var elements = graphDataToElements(data);
+    if (elements.length === 0) {
+      if (dbg) dbg.textContent = '0 elements. Raw: ' + JSON.stringify(data).substring(0, 300);
+      return;
+    }
+    initCytoscape(elements);
+  } catch(e) {
+    if (dbg) dbg.textContent = 'Error: ' + e.message + ' | Input type: ' + typeof data;
+  }
+};
+
+window.fetchAndLoadGraph = function(projectRoot) {
+  var dbg = document.getElementById('debug-info');
+  if (dbg) dbg.textContent = 'Fetching from backend...';
+  fetch('http://127.0.0.1:8742/init', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ projectRoot: projectRoot })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (dbg) dbg.textContent = 'Got ' + (data.nodes || []).length + ' nodes from backend';
+    window.loadGraph(data);
+  })
+  .catch(function(e) {
+    if (dbg) dbg.textContent = 'Fetch error: ' + e.message;
+  });
+};
+
+window.patchGraph = function(diff) {
+  if (!cy) return;
+
+  if (diff.removedEdges) {
+    diff.removedEdges.forEach(e => {
+      const edgeId = e.source + '->' + e.target + ':' + (e.label || '');
+      const el = cy.getElementById(edgeId);
+      if (el.length) el.remove();
+    });
+  }
+
+  if (diff.removedNode) {
+    const el = cy.getElementById(diff.removedNode.id);
+    if (el.length) el.remove();
+  }
+
+  if (diff.updatedNode) {
+    const n = diff.updatedNode;
+    const colors = LAYER_COLORS[n.layer] || LAYER_COLORS.gray;
+    const existing = cy.getElementById(n.id);
+    if (existing.length) {
+      existing.data({
+        label: n.label,
+        filePath: n.filePath,
+        layer: n.layer,
+        functions: n.functions || [],
+        imports: n.imports || [],
+        exports: n.exports || [],
+        calls: n.calls || [],
+        bgColor: colors.bg,
+        borderColor: colors.border,
+        textColor: colors.text,
+      });
+    } else {
+      cy.add({
+        data: {
+          id: n.id,
+          label: n.label,
+          filePath: n.filePath,
+          layer: n.layer,
+          functions: n.functions || [],
+          imports: n.imports || [],
+          exports: n.exports || [],
+          calls: n.calls || [],
+          description: n.description || '',
+          bgColor: colors.bg,
+          borderColor: colors.border,
+          textColor: colors.text,
+        }
+      });
+    }
+  }
+
+  if (diff.addedEdges) {
+    diff.addedEdges.forEach(e => {
+      const edgeId = e.source + '->' + e.target + ':' + (e.label || '');
+      if (cy.getElementById(edgeId).length === 0) {
+        cy.add({
+          data: {
+            id: edgeId,
+            source: e.source,
+            target: e.target,
+            label: e.label || '',
+          }
+        });
+      }
+    });
+  }
+
+  if (currentSelectedNode) {
+    const node = cy.getElementById(currentSelectedNode);
+    if (node.length) selectNode(node);
+  }
+
+  updateStatus();
+};
+
+/* Auto-load data from graph-data.js if available */
+document.addEventListener('DOMContentLoaded', function() {
+  var dbg = document.getElementById('debug-info');
+  if (window.__graphData) {
+    if (dbg) dbg.textContent = 'Auto-loading ' + (window.__graphData.nodes || []).length + ' nodes...';
+    window.loadGraph(window.__graphData);
+  } else {
+    if (dbg) dbg.textContent = 'No embedded data found. Waiting...';
+  }
+});
+</script>
+</body>
+</html>

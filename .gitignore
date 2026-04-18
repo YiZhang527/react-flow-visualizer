@@ -1,1 +1,22 @@
+# Gradle
+.gradle/
 build/
+
+# IntelliJ / IDE
+.idea/
+*.iml
+out/
+
+# IntelliJ Platform Gradle (downloaded SDKs, local caches)
+.intellijPlatform/
+
+# OS
+.DS_Store
+
+# Python (backend)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.eggs/

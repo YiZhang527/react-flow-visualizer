@@ -1,2 +1,0 @@
-#!/bin/sh
-"/Users/zhangyi/.gradle/caches/transforms-3/02b6cd120927e7931fa65c110aada0b2/transformed/ideaIC-2023.2.1-aarch64/jbr/Contents/Home/bin/java" -cp "/Users/zhangyi/.gradle/caches/transforms-3/02b6cd120927e7931fa65c110aada0b2/transformed/ideaIC-2023.2.1-aarch64/plugins/vcs-git/lib/git4idea-rt.jar:/Users/zhangyi/.gradle/caches/transforms-3/02b6cd120927e7931fa65c110aada0b2/transformed/ideaIC-2023.2.1-aarch64/lib/externalProcess-rt.jar" git4idea.editor.GitRebaseEditorApp "$@"
