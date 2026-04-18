@@ -12,3 +12,4 @@ stubIndex.cumulativeBinaryBuilder
 fileIncludes.index.version
 TodoIndex.index.version
 language_level_persistence
+FrameworkDetectionIndex.index.version

@@ -5,20 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b968dae5-1430-4353-9056-6dc962e246a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/actionSummary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/actionSummary.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/.lock" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/recentProjects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/recentProjects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/usage.statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/usage.statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/workspace/3CXvotBsCD1xanrE9TzG3OHCTx8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/workspace/3CXvotBsCD1xanrE9TzG3OHCTx8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/idea.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/idea.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-14-38-51.076.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-14-38-51.076.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-14-38-50.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-14-38-50.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/attributes.dat" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/attributes.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/event-log-data/logs/FUS/7a86-4485-84ac-4bbcc470c164-232.9559.62-release.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/event-log-data/logs/FUS/9abf-405f-8ff3-fa25e0581024-232.9559.62-release.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/event-log-data/logs/FUS/e222-4adb-893a-eff33f3f53fe-232.9559.62-release.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/icon-v14.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/icon-v14.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/10-react-components.de1b7d10/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/10-react-components.de1b7d10/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-13-33-25.616.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-13-52-42.567.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/plugins/react-flow-visualizer/lib/react-flow-visualizer-0.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/plugins/react-flow-visualizer/lib/react-flow-visualizer-0.1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.appinfo" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.appinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.pid" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.pid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.port" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.port" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/LocalHistory/changes.storageData" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/LocalHistory/changes.storageData" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/LocalHistory/changes.storageRecordIndex" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/LocalHistory/changes.storageRecordIndex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/event-log-data/logs/FUS/f49c-484d-be1c-6e0209d3e157-232.9559.62-release.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/icon-v14.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/icon-v14.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/registered" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/registered" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/shared_indexes/forward.index.versions" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/shared_indexes/forward.index.versions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LocalPrefs.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LocalPrefs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/projects/10-react-components.de1b7d10/project-model-cache/cache.data" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/projects/10-react-components.de1b7d10/project-model-cache/cache.data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-base.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-base.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-instrumented.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-instrumented.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/.cache/expanded/expanded.lock" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/.cache/expanded/expanded.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/instrumentCode/com/github/reactflow/analysis/ComponentExtractor.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -82,7 +82,10 @@
       const g = d3.select('#root-g');
       g.selectAll('*').remove();
       const pos = buildLayout(data);
-      svg.call(d3.zoom().scaleExtent([0.3, 2]).on('zoom', e => g.attr('transform', e.transform)));
+      svg.call(d3.zoom()
+          .scaleExtent([0.3, 2])
+          .filter(event => event.type !== 'mousemove' || event.buttons !== 0)
+          .on('zoom', e => g.attr('transform', e.transform)));
 
       Object.entries(data.components).forEach(([parentName, node]) => {
         (node.children || []).forEach(childName => {
