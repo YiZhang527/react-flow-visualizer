@@ -5,27 +5,112 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b968dae5-1430-4353-9056-6dc962e246a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/reactflow/MyToolWindowFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode-test.mjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscodeignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/extension.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/extension.test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vsc-extension-quickstart.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$2$componentsJson$1$childrenJson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$2$componentsJson$1$propsJson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$2$componentsJson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/github/reactflow/MyToolWindowFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/actionSummary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/actionSummary.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/recentProjects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/recentProjects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/usage.statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/usage.statistics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/window.state.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/options/window.state.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/workspace/3CXvotBsCD1xanrE9TzG3OHCTx8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/config/workspace/3CXvotBsCD1xanrE9TzG3OHCTx8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/idea.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/idea.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/10-react-components.de1b7d10/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/10-react-components.de1b7d10/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-16-35-44.079.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-16-39-39.556.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-16-41-35.822.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-18-08-30.657.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-2026-04-18-18-08-30.657.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-on-shutdown-2026-04-18-16-30-37.040.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-on-shutdown-2026-04-18-16-35-44.079.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-on-shutdown-2026-04-18-16-39-39.556.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/indexing-diagnostic/storage-diagnostic-on-shutdown-2026-04-18-16-41-35.822.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-16-14-54.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-16-22-32.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-16-27-43.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-18-08-30.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/log/open-telemetry-metrics.2026-04-18-18-08-30.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/plugins/react-flow-visualizer/lib/react-flow-visualizer-0.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/plugins/react-flow-visualizer/lib/react-flow-visualizer-0.1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.appinfo" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.appinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.pid" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.pid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/.port" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/records.dat" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/records.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/vfslog/data/size" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/vfslog/data/size" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/vfslog/operations/size" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/caches/vfslog/operations/size" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/event-log-data/logs/FUS/4faa-40de-81aa-bd7dfe7c3297-232.9559.62-release.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/event-log-data/logs/FUS/53ba-41c2-914a-a13469ca15c6-232.9559.62-release.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/fileHistory/10-react-componentsde1b7d10-ngram" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/fileHistory/10-react-componentsde1b7d10-ngram" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/indices.config" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/indices.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/registered" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/registered" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/shared_indexes/forward.index.versions" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/index/shared_indexes/forward.index.versions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Cache/Cache_Data/index-dir/the-real-index" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Cache/Cache_Data/index-dir/the-real-index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/DawnCache/data_1" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/DawnCache/data_1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/DawnCache/index" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/DawnCache/index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/GPUCache/data_1" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/GPUCache/data_1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/GPUCache/index" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/GPUCache/index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LOG.old" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LOG.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Local Storage/leveldb/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Local Storage/leveldb/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Local Storage/leveldb/LOG.old" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Local Storage/leveldb/LOG.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LocalPrefs.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/LocalPrefs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Network Persistent State" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Network Persistent State" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Visited Links" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/jcef_cache/Visited Links" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/plugins/pluginsXMLIds.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/plugins/pluginsXMLIds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/plugins/pluginsXMLIds.json.etag" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/plugins/pluginsXMLIds.json.etag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/projects/10-react-components.de1b7d10/project-model-cache/cache.data" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/IC-2023.2.1/system/projects/10-react-components.de1b7d10/project-model-cache/cache.data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$1$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$2$componentsJson$1$childrenJson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$2$componentsJson$1$propsJson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory$createToolWindowContent$2$componentsJson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/instrumented/instrumentCode/com/github/reactflow/MyToolWindowFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.s" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-base.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-base.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-instrumented.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0-instrumented.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/react-flow-visualizer-0.1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/.cache/expanded/expanded.lock" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/.cache/expanded/expanded.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/reactflow/MyToolWindowFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/reactflow/MyToolWindowFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/graph.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,23 +158,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Gradle.Upgrade Gradle wrapper.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "intellij-plugin",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/zhangyi/Yi/Study/Project/Fun/react-flow-visualizer",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.Upgrade Gradle wrapper.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;intellij-plugin&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/zhangyi/Yi/Study/Project/Fun/react-flow-visualizer&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

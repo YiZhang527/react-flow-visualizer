@@ -1,10 +1,31 @@
 <application>
   <component name="ActionsLocalSummary">
+    <e n="$SelectAll">
+      <i c="2" l="1776557176717" />
+    </e>
+    <e n="ActivateReactFlowVisualizerToolWindow">
+      <i c="1" l="1776545574981" />
+    </e>
+    <e n="EditorCopy">
+      <i c="5" l="1776557177189" />
+    </e>
     <e n="WelcomeScreen.OpenProject">
       <i c="1" l="1776544865111" />
     </e>
+    <e n="com.intellij.ide.plugins.DynamicPluginVfsListener$prepareChange$2$afterVfsChange$1$1">
+      <i c="4" l="1776557041824" />
+    </e>
+    <e n="com.intellij.ide.projectView.actions.MarkSourceRootAction">
+      <i c="1" l="1776548447588" />
+    </e>
     <e n="com.intellij.notification.NotificationAction$Simple">
       <i c="1" l="1776544965171" />
+    </e>
+    <e n="com.intellij.openapi.project.LightEditActionFactory$SimpleLightEditCompatibleAction">
+      <i c="1" l="1776570264281" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$ShowOptionsAction">
+      <i c="1" l="1776546745130" />
     </e>
   </component>
 </application>
