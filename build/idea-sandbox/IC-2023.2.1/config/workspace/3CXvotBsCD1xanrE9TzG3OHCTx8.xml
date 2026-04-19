@@ -59,13 +59,13 @@
   </component>
   <component name="FileTypeUsageLocalSummary">
     <fileType name="CSS">
-      <summary usageCount="5" lastUsed="1776555345997" />
+      <summary usageCount="10" lastUsed="1776556735171" />
     </fileType>
     <fileType name="Markdown">
-      <summary usageCount="8" lastUsed="1776555345633" />
+      <summary usageCount="13" lastUsed="1776556734863" />
     </fileType>
     <fileType name="textmate">
-      <summary usageCount="24" lastUsed="1776555345914" />
+      <summary usageCount="44" lastUsed="1776556735147" />
     </fileType>
   </component>
   <component name="IgnoredFileRootStore">
@@ -77,10 +77,10 @@
   </component>
   <component name="LanguageUsageStatistics">
     <language id="Markdown">
-      <summary usageCount="8" lastUsage="1776555345635" />
+      <summary usageCount="13" lastUsage="1776556734864" />
     </language>
     <language id="textmate">
-      <summary usageCount="24" lastUsage="1776555345914" />
+      <summary usageCount="44" lastUsage="1776556735147" />
     </language>
   </component>
   <component name="ProjectView">
@@ -115,7 +115,7 @@
   <component name="ToolWindowManager">
     <layout>
       <window_info id="Bookmarks" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15112434" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.113425925" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" />
@@ -127,13 +127,13 @@
       <window_info anchor="bottom" id="Problems View" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Services" order="8" />
-      <window_info active="true" anchor="right" id="React Flow Visualizer" order="0" visible="true" weight="0.682209" />
+      <window_info active="true" anchor="right" id="React Flow Visualizer" order="0" visible="true" weight="0.59093916" />
       <window_info anchor="right" id="Notifications" order="1" weight="0.25" />
-      <unified_weights left="0.15112434" right="0.682209" />
+      <unified_weights left="0.113425925" right="0.59093916" />
     </layout>
     <recentWindows>
-      <value>React Flow Visualizer</value>
       <value>Project</value>
+      <value>React Flow Visualizer</value>
     </recentWindows>
   </component>
   <component name="editorHistoryManager">

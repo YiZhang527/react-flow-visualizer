@@ -1,21 +1,31 @@
 package com.github.reactflow
 
 import com.github.reactflow.analysis.ComponentExtractor
+import com.github.reactflow.model.ReactComponent
+import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
 import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
+import com.intellij.ui.jcef.JBCefJSQuery
+import org.cef.browser.CefBrowser
+import org.cef.browser.CefFrame
+import org.cef.handler.CefLoadHandlerAdapter
 import java.awt.BorderLayout
 import javax.swing.*
 
 class MyToolWindowFactory : ToolWindowFactory, DumbAware {
 
+    private var componentMap: Map<String, ReactComponent> = emptyMap()
+
     private fun buildHtml(json: String): String {
-        val graphHtml = javaClass.classLoader.getResource("graph.html")?.readText() ?: return "<p>graph.html not found</p>"
-        // Inject the real data by replacing the demo initGraph call
+        val graphHtml = javaClass.classLoader.getResource("graph.html")?.readText()
+            ?: return "<p>graph.html not found</p>"
         return graphHtml.replace(
             "window.addEventListener('load', () => {",
             """
@@ -32,7 +42,6 @@ class MyToolWindowFactory : ToolWindowFactory, DumbAware {
         val analyzeButton = JButton("Analyze React Project")
 
         if (!JBCefApp.isSupported()) {
-            // Fallback text mode
             val outputArea = JTextArea("Click 'Analyze' to scan your React project.\n")
             outputArea.isEditable = false
             outputArea.lineWrap = true
@@ -42,11 +51,10 @@ class MyToolWindowFactory : ToolWindowFactory, DumbAware {
                     val extractor = ComponentExtractor(project)
                     val graph = extractor.extract()
                     if (graph.allComponents.isEmpty()) {
-                        outputArea.text = "No React components found.\nMake sure you opened a React project."
+                        outputArea.text = "No React components found."
                         return@addActionListener
                     }
                     val sb = StringBuilder()
-                    sb.appendLine("Found ${graph.allComponents.size} component(s):\n")
                     graph.allComponents.values.forEach { comp ->
                         sb.appendLine("📦 ${comp.name}")
                         sb.appendLine("   File: ${comp.filePath}:${comp.lineNumber}")
@@ -67,7 +75,41 @@ class MyToolWindowFactory : ToolWindowFactory, DumbAware {
         }
 
         val browser = JBCefBrowser()
-        browser.loadHTML("<html><body style='background:#f5f5f0;font-family:sans-serif;padding:20px;color:#999'>Click <b>Analyze React Project</b> to visualize your components.</body></html>")
+
+        // JS Query: node click → open file in editor
+        val nodeClickQuery = JBCefJSQuery.create(browser as com.intellij.ui.jcef.JBCefBrowserBase)
+        nodeClickQuery.addHandler { nodeName ->
+            val target = componentMap[nodeName]
+            if (target != null) {
+                ApplicationManager.getApplication().invokeLater {
+                    val vFile = LocalFileSystem.getInstance().findFileByPath(target.filePath)
+                    if (vFile != null) {
+                        val descriptor = OpenFileDescriptor(project, vFile, target.lineNumber - 1, 0)
+                        descriptor.navigate(true)
+                    }
+                }
+            }
+            null
+        }
+
+        // Inject JS bridge after page load
+        browser.jbCefClient.addLoadHandler(object : CefLoadHandlerAdapter() {
+            override fun onLoadEnd(cefBrowser: CefBrowser, frame: CefFrame, httpStatusCode: Int) {
+                if (!frame.isMain) return
+                browser.cefBrowser.executeJavaScript(
+                    """
+                    window.javaConnector = {
+                        onNodeClicked: function(name) {
+                            ${nodeClickQuery.inject("name")}
+                        }
+                    };
+                    """.trimIndent(),
+                    browser.cefBrowser.url, 0
+                )
+            }
+        }, browser.cefBrowser)
+
+        browser.loadHTML("<html><body style='background:#f0ede8;font-family:sans-serif;padding:20px;color:#999'>Click <b>Analyze React Project</b> to visualize your components.</body></html>")
 
         analyzeButton.addActionListener {
             try {
@@ -75,9 +117,11 @@ class MyToolWindowFactory : ToolWindowFactory, DumbAware {
                 val graph = extractor.extract()
 
                 if (graph.allComponents.isEmpty()) {
-                    browser.loadHTML("<html><body style='padding:20px;color:#999;font-family:sans-serif'>No React components found.<br>Make sure you opened a React project.</body></html>")
+                    browser.loadHTML("<html><body style='padding:20px;color:#999;font-family:sans-serif'>No React components found.</body></html>")
                     return@addActionListener
                 }
+
+                componentMap = graph.allComponents
 
                 val rootName = graph.root?.name ?: graph.allComponents.keys.first()
                 val componentsJson = graph.allComponents.values.joinToString(",") { comp ->
