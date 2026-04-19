@@ -21,6 +21,9 @@
     <e n="com.intellij.notification.NotificationAction$Simple">
       <i c="1" l="1776544965171" />
     </e>
+    <e n="com.intellij.openapi.project.LightEditActionFactory$SimpleLightEditCompatibleAction">
+      <i c="1" l="1776570264281" />
+    </e>
     <e n="com.intellij.toolWindow.ToolWindowHeader$ShowOptionsAction">
       <i c="1" l="1776546745130" />
     </e>

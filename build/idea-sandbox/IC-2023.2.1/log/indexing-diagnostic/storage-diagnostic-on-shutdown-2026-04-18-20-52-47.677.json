@@ -6,18 +6,18 @@
       "load" : 110,
       "capacity" : 400
     },
-    "uncachedFileAccess" : 164,
+    "uncachedFileAccess" : 149,
     "maxRegisteredFiles" : 651,
     "maxCacheSizeInBytes" : 273719296,
     "totalCachedSizeInBytes" : 34643968,
     "pageHits" : 0,
-    "pageFastCacheHits" : 22246,
+    "pageFastCacheHits" : 21747,
     "pageLoadsAboveSizeThreshold" : 0,
-    "regularPageLoads" : 275,
-    "disposedBuffers" : 246,
-    "totalPageDisposalUs" : 541,
-    "totalPageLoadUs" : 141455,
-    "totalPagesLoaded" : 275,
+    "regularPageLoads" : 260,
+    "disposedBuffers" : 231,
+    "totalPageDisposalUs" : 431,
+    "totalPageLoadUs" : 163795,
+    "totalPagesLoaded" : 260,
     "capacityInBytes" : 524288000
   },
   "vfsStorageStats" : {
@@ -52,8 +52,8 @@
           "moves" : 0,
           "leafPages" : 2,
           "maxSearchStepsInRequest" : 55,
-          "searchRequests" : 13214,
-          "searchSteps" : 14045,
+          "searchRequests" : 13222,
+          "searchSteps" : 14054,
           "pageCapacity" : 32768,
           "sizeInBytes" : 98304
         }
@@ -361,7 +361,7 @@
           "moves" : 0,
           "leafPages" : 1,
           "maxSearchStepsInRequest" : 0,
-          "searchRequests" : 330,
+          "searchRequests" : 224,
           "searchSteps" : 0,
           "pageCapacity" : 32768,
           "sizeInBytes" : 32768

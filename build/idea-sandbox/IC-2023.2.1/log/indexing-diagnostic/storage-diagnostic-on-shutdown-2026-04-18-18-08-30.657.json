@@ -1,23 +1,23 @@
 {
   "pageCacheStats" : {
     "cachedChannelsStatistics" : {
-      "hit" : 6,
+      "hit" : 4,
       "miss" : 0,
-      "load" : 223,
+      "load" : 110,
       "capacity" : 400
     },
-    "uncachedFileAccess" : 292,
+    "uncachedFileAccess" : 164,
     "maxRegisteredFiles" : 651,
-    "maxCacheSizeInBytes" : 284205056,
+    "maxCacheSizeInBytes" : 273719296,
     "totalCachedSizeInBytes" : 14704640,
     "pageHits" : 0,
-    "pageFastCacheHits" : 36955,
+    "pageFastCacheHits" : 22975,
     "pageLoadsAboveSizeThreshold" : 0,
-    "regularPageLoads" : 516,
-    "disposedBuffers" : 508,
-    "totalPageDisposalUs" : 809,
-    "totalPageLoadUs" : 345075,
-    "totalPagesLoaded" : 516,
+    "regularPageLoads" : 275,
+    "disposedBuffers" : 267,
+    "totalPageDisposalUs" : 2045,
+    "totalPageLoadUs" : 106800,
+    "totalPagesLoaded" : 275,
     "capacityInBytes" : 524288000
   },
   "vfsStorageStats" : {
@@ -52,8 +52,8 @@
           "moves" : 0,
           "leafPages" : 2,
           "maxSearchStepsInRequest" : 55,
-          "searchRequests" : 13218,
-          "searchSteps" : 14048,
+          "searchRequests" : 13222,
+          "searchSteps" : 14054,
           "pageCapacity" : 32768,
           "sizeInBytes" : 98304
         }

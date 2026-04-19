@@ -11,12 +11,12 @@
     "maxCacheSizeInBytes" : 273719296,
     "totalCachedSizeInBytes" : 34643968,
     "pageHits" : 0,
-    "pageFastCacheHits" : 21693,
+    "pageFastCacheHits" : 22008,
     "pageLoadsAboveSizeThreshold" : 0,
     "regularPageLoads" : 260,
     "disposedBuffers" : 231,
-    "totalPageDisposalUs" : 256,
-    "totalPageLoadUs" : 100345,
+    "totalPageDisposalUs" : 485,
+    "totalPageLoadUs" : 155526,
     "totalPagesLoaded" : 260,
     "capacityInBytes" : 524288000
   },
@@ -52,8 +52,8 @@
           "moves" : 0,
           "leafPages" : 2,
           "maxSearchStepsInRequest" : 55,
-          "searchRequests" : 13214,
-          "searchSteps" : 14045,
+          "searchRequests" : 13222,
+          "searchSteps" : 14054,
           "pageCapacity" : 32768,
           "sizeInBytes" : 98304
         }
