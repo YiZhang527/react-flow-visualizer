@@ -1,13 +1,13 @@
 <application>
   <component name="ActionsLocalSummary">
     <e n="$SelectAll">
-      <i c="1" l="1776548459165" />
+      <i c="2" l="1776557176717" />
     </e>
     <e n="ActivateReactFlowVisualizerToolWindow">
       <i c="1" l="1776545574981" />
     </e>
     <e n="EditorCopy">
-      <i c="4" l="1776549502515" />
+      <i c="5" l="1776557177189" />
     </e>
     <e n="WelcomeScreen.OpenProject">
       <i c="1" l="1776544865111" />
